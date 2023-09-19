@@ -1,0 +1,31 @@
+Java honey tips
+
+1. garbage collector 
+- automatically memory management
+- don't have to 'delete' objects
+- delete objects (when no references pointing to them)
+
+2. I/O : Scanner/System.out
+
+3. Date & Time
+- import java.util.Date;
+- import java.text.SimpleDateFormat;
+ex 1)
+final Date now = new Date( );
+final SimpleDateFormat format = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
+
+System.out.println("Current Date: " + format.format(now));
+// Current Date: ¼ö 2020.09.09 at 03:07:17 ¿ÀÈÄ KST
+
+- delay
+Thread.sleep(3 * 1000); // throws InterruptedException
+
+4. Enhanced for loop 
+- for ( final int i : numbers ) { ... }
+
+5. 'final' keyword for constants
+- final int a = 10;
+
+6. HashMap
+- import java.util.HashMap;
+- import java.util.Map;
