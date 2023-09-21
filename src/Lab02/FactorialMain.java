@@ -1,4 +1,4 @@
-package week2;
+package Lab02;
 
 public class FactorialMain {
     public static void main(String[] args) {
