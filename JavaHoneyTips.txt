@@ -29,3 +29,31 @@ Thread.sleep(3 * 1000); // throws InterruptedException
 6. HashMap
 - import java.util.HashMap;
 - import java.util.Map;
+
+7. 'static' keyword 
+-When a member is declared as static, it means it is associated with the class itself, not with individual objects created from the class.
+
+Static Variables (Class Variables):
+- Static variables are also known as class variables because they are shared among all instances (objects) of the class.
+
+Static Methods:
+- They are declared using the static keyword and can be called using the class name, without creating an object.
+
+Static Blocks:
+- Static blocks are used to initialize static variables or perform one-time setup for the class.
+
+Ex)
+public class MyClass {
+    static {
+        // Initialization code for static variables
+        staticVar = 20;
+    }
+    static int staticVar;
+}
+
+Static Nested Classes:
+- Static nested classes can be instantiated without an instance of the outer class.
+
+Ex) main method of Java Class..
+public class ArrayEnum {
+    public static void main(String[] args) { ... }
