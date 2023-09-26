@@ -1,24 +1,27 @@
-Java honey tips
+ï»¿Java honey tips
 
 1. garbage collector 
 - automatically memory management
 - don't have to 'delete' objects
 - delete objects (when no references pointing to them)
+- Java objects are created on the heap...
 
 2. I/O : Scanner/System.out
 
 3. Date & Time
 - import java.util.Date;
 - import java.text.SimpleDateFormat;
-ex 1)
+ex)
+-----------------------------------
 final Date now = new Date( );
 final SimpleDateFormat format = new SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
 
 System.out.println("Current Date: " + format.format(now));
-// Current Date: ¼ö 2020.09.09 at 03:07:17 ¿ÀÈÄ KST
+// Current Date: ìˆ˜ 2020.09.09 at 03:07:17 ì˜¤í›„ KST
 
 - delay
 Thread.sleep(3 * 1000); // throws InterruptedException
+-----------------------------------
 
 4. Enhanced for loop 
 - for ( final int i : numbers ) { ... }
@@ -43,6 +46,7 @@ Static Blocks:
 - Static blocks are used to initialize static variables or perform one-time setup for the class.
 
 Ex)
+-----------------------------------
 public class MyClass {
     static {
         // Initialization code for static variables
@@ -50,10 +54,63 @@ public class MyClass {
     }
     static int staticVar;
 }
+-----------------------------------
 
 Static Nested Classes:
 - Static nested classes can be instantiated without an instance of the outer class.
 
 Ex) main method of Java Class..
+-----------------------------------
 public class ArrayEnum {
     public static void main(String[] args) { ... }
+-----------------------------------
+
+8. Reflection
+
+Java Reflection
+- a feature that allows you to inspect and manipulate the structure, behavior, and metadata of Java classes, objects, methods, and fields at runtime.
+
+ex)
+-----------------------------------
+import java.lang.reflect.*;
+
+// print class name and superclass name
+final Class<?> cl = Class.forName(name); // java.lang.Class
+final Class<?> supercl = cl.getSuperclass();
+-----------------------------------
+
+9. Java Documentation Comment
+- allow you to embed information about your program into the program itself.\
+- make .html files shows Java Documentation
+
+/** Java documentation comment */
+
+ex)
+-----------------------------------
+import java.io.*;
+Â 
+/**
+* This class demonstrates documentation comments.
+* @author Ayan Amhed 
+* @version 1.2
+*/
+public class SquareNum {
+   /**
+   * This method returns the square of num.
+   * This is a multiline description. You can use
+   * as many lines as you like.
+   * @param num The value to be squared.
+   * @return num squared.
+   */
+   public double square(double num) {
+      return num * num;
+   }
+
+-----------------------------------
+
+10. throws
+announce that this method can throw an exception.
+
+ex)
+-----------------------------------
+public double getNumber() throws IOException { ... }
