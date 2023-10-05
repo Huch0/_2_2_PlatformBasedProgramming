@@ -38,7 +38,7 @@ public class StringSetManager {
     // Your code here
 
     // Get StringCommand from input
-    public static StringCommand getCommand(Scanner scanner) {
+    private static StringCommand getCommand(Scanner scanner) {
         final String inputCommand = scanner.next();
         StringCommand command;
 
@@ -64,21 +64,31 @@ public class StringSetManager {
             return;
         }
 
+        // newString already exists in set
         if (findString(stringSet, newString) != -1) {
             displaySet(stringSet);
             return;
         }
 
-        int index = currentSize(stringSet);
+        // Find empty cell of the array
+        for (int i = 0; i < 100; i++) {
+            if (stringSet[i] == null) {
+                stringSet[i] = newString;
+                break;
+            }
+        }
 
-        stringSet[index] = newString;
+        //int index = currentSize(stringSet);
+        // Insert newString to the end of the stringSet
+        // stringSet[index] = newString;
+        // Sort the stringSet
+        // sortSet(stringSet);
 
         displaySet(stringSet);
     }
 
     // Remove strToFind from stringSet
     public static void executeRemove(String[] stringSet, String strToRemove) {
-        int currentSize = currentSize(stringSet);
         int index = findString(stringSet, strToRemove);
 
         // strToRemove wasn't founded
@@ -88,25 +98,35 @@ public class StringSetManager {
         }
 
         // Remove strToFind and Move elements from strToRemove's index to the end.
+        /*
         for (int i = index; i < currentSize; i++) {
             stringSet[i] = stringSet[i + 1];
         }
         stringSet[currentSize - 1] = null;
+        */
+        stringSet[index] = null;
 
         displaySet(stringSet);
     }
 
-    // Remove all elements of stringSet\
+    // Remove all elements of stringSet
     public static void executeClear(String[] stringSet) {
+        /*
         int index = 0;
 
         while (stringSet[index] != null) {
             stringSet[index] = null;
             index++;
         }
+        */
+         for (int i = 0; i < 100; i++) {
+             stringSet[i] = null;
+         }
 
         displaySet(stringSet);
     }
+
+    // Utility functions
 
     // Display contents of stringSet
     public static void displaySet(String[] stringSet) {
@@ -119,6 +139,21 @@ public class StringSetManager {
             return;
         }
 
+        int index = 0;
+        while (stringSet[index] == null) {
+            index++;
+        }
+
+        System.out.print(stringSet[index]);
+
+        for (int i = index + 1; i < 100; i++) {
+            if (stringSet[i] != null)
+                System.out.print(", " + stringSet[i]);
+        }
+
+        System.out.println();
+
+        /*
         System.out.print(stringSet[0]);
 
         for (int i = 1; i < currentSize; i++) {
@@ -126,10 +161,13 @@ public class StringSetManager {
         }
 
         System.out.println();
+
+         */
     }
 
     // Return the number of existing elements of stringSet
     public static int currentSize(String[] stringSet) {
+        /*
         int index = 0;
 
         while (stringSet[index] != null) {
@@ -137,27 +175,51 @@ public class StringSetManager {
         }
 
         return index;
+
+         */
+        int count = 0;
+        for (int i = 0; i < 100; i++) {
+            if (stringSet[i] != null)
+                count++;
+        }
+        return count;
     }
 
     // Find the index of strToFind from stringSet
     public static int findString(String[] stringSet, String strToFind) {
         int index = 0;
-        int currentSize = currentSize(stringSet);
 
         // Find the index of strToFind from stringSet
-        while (stringSet[index] != null) {
+        while (index < 100) {
             if (strToFind.equals(stringSet[index]))
                 break;
             index++;
         }
 
         // strToFind wasn't founded
-        if (index == currentSize)
+        if (index == 100)
             return -1;
 
         return index;
     }
+    // Sort the stringSet in ascending order with Insertion Sort
+    /*
+    public static void sortSet(String[] stringSet) {
+        int currentSize = currentSize(stringSet);
+        for(int i = 1; i < currentSize; i++) {
+            String currentStr = stringSet[i];
+            int j = i - 1;
 
+            // Move string to the right greater than currentStr
+            while (j >= 0 && stringSet[j].compareTo(currentStr) > 0) {
+                stringSet[j + 1] = stringSet[j];
+                j--;
+            }
+            // Insert the currentStr in its correct position
+            stringSet[j + 1] = currentStr;
+        }
+    }
+    */
     public static boolean isFull(String[] stringSet) {
         return currentSize(stringSet) == 100;
     }
