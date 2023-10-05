@@ -43,7 +43,7 @@ public class ArrayEnum {
     // Your code here
     public static Command getCommand(Scanner scanner) {
         String inputCommand = scanner.next();
-        final Command command;
+        Command command;
 
         try {
              command = Command.valueOf(inputCommand.toUpperCase());
