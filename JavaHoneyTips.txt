@@ -114,3 +114,74 @@ announce that this method can throw an exception.
 ex)
 -----------------------------------
 public double getNumber() throws IOException { ... }
+
+11. abstract
+
+11-1. abstract class
+- can't be instantiated on its own
+- can have abstract methods and concrete methods
+- Subclasses of an abstract class must implement all the abstract methods
+- or be declared as abstract themselves.
+
+11-2. abstract method
+- has no implementation (no method body)
+- must be implemented by concrete subclasses.
+
+12. Object class
+- fundamental class, the root of the class hierarchy
+- Every class in Java inherits 'Object' class. (directly or indirectly)
+
+- Common Methods :
+	- equals(Object obj): Compares two objects for equality.
+	- hashCode(): Returns a hash code value for the object.
+	- toString(): Returns a string representation of the object.
+	- getClass(): Returns the runtime class of the object.
+	- clone(): Creates and returns a copy of the object.
+	- finalize(): Called by the garbage collector before an object is reclaimed.
+	- wait(), notify(), and notifyAll(): Used for inter-thread communication (synchronization).
+can override the methods inherited from 'Object'
+
+13. Annotation @
+- metadata that provide additional information about the code.
+- to the compiler, tools, and runtime environments
+
+- enhance code readability, provide configuration instructions, enable the creation of custom behaviors.
+
+ex)
+-----------------------------------
+@AnnotationType(value = "example")
+public class MyClass {
+    // ...
+}
+
+- Built-In Annotations :
+@Override, @Deprecated, @SuppressWarnings ...
+
+- Custom Annotation : 
+Developers can define their custom annotations by creating annotation interfaces
+
+ex)
+-----------------------------------
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MyAnnotation {
+    String value() default "default value";
+}
+
+public class MyClass {
+    @MyAnnotation(value = "custom value")
+    public void myMethod() {
+        // ...
+    }
+}
+
+
+- Retention Policy :
+	- SOURCE : retained only in the source code
+	- CLASS : retained in the compiled bytecode
+	- RUNTIME : retained in the bytecode and available at runtime 
+
+
+
