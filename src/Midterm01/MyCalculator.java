@@ -67,7 +67,6 @@ public class MyCalculator {
             return Operator.INVALID;
         }
     }
-
     //Your code
     private static void printSumBetween(int a, int b) {
         int sum = a;

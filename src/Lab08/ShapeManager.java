@@ -23,28 +23,32 @@ public class ShapeManager {
             System.out.println("Enter a command: [ADD, PRINTALL, PRINT, REMOVEALL, TOTALAREA, QUIT, INVALID]");
             Command command = getCommand();
 
-            if (command == Command.QUIT) {
-                System.out.println("Bye");
-                break;
-            }
-            if (command == Command.INVALID) {
-                System.out.println("Invalid Operation!");
-                continue;
-            }
-
             switch (command) {
                 case ADD:
                     addShape(shapeList);
                     break;
                 case PRINTALL:
                     printAll(shapeList);
+                    break;
                 case PRINT:
                     print(shapeList);
-
-
+                    break;
+                case REMOVEALL:
+                    removeAll(shapeList);
+                    break;
+                case TOTALAREA:
+                    totalArea(shapeList);
+                    break;
+                case QUIT:
+                    System.out.println("Bye");
+                    isRunning = false;
+                    break;
+                case INVALID:
+                    System.out.println("Invalid Operation!");
+                    break;
+                default:
+                    break;
             }
-
-
         }
         scanner.close();
     }
@@ -84,11 +88,16 @@ public class ShapeManager {
                 int width = scanner.nextInt();
                 int height = scanner.nextInt();
 
-                Rectangle newRectangle = new Rectangle(width, height);
+                try {
+                    Rectangle newRectangle = new Rectangle(width, height);
 
-                System.out.println(newRectangle);
+                    System.out.println(newRectangle);
 
-                shapeList.add(newRectangle);
+                    shapeList.add(newRectangle);
+                } catch (InvalidRectangleException e) {
+                    System.err.println(e);
+                }
+
                 break;
             }
 
@@ -97,11 +106,15 @@ public class ShapeManager {
                 int width = scanner.nextInt();
                 int height = scanner.nextInt();
 
-                Triangle newTriangle = new Triangle(width, height);
+                try {
+                    Triangle newTriangle = new Triangle(width, height);
 
-                System.out.println(newTriangle);
+                    System.out.println(newTriangle);
 
-                shapeList.add(newTriangle);
+                    shapeList.add(newTriangle);
+                } catch (InvalidTriangleException e) {
+                    System.err.println(e);
+                }
                 break;
             }
 
@@ -111,11 +124,15 @@ public class ShapeManager {
                 int centerY = scanner.nextInt();
                 int radius = scanner.nextInt();
 
-                Circle newCircle = new Circle(centerX, centerY, radius);
+                try {
+                    Circle newCircle = new Circle(centerX, centerY, radius);
 
-                System.out.println(newCircle);
+                    System.out.println(newCircle);
 
-                shapeList.add(newCircle);
+                    shapeList.add(newCircle);
+                } catch (InvalidCircleException e) {
+                    System.err.println(e);
+                }
                 break;
             }
         }
@@ -134,17 +151,63 @@ public class ShapeManager {
 
     private static void print(List<Shape> shapeList) {
         ShapeCode shapeToPrint = getShapeCode();
+        int numOfEntries = 0;
 
         switch (shapeToPrint) {
             case R: {
                 for (Shape shape : shapeList) {
                     if (shape instanceof Rectangle) {
-                        
+                        System.out.println(shape);
+
+                        numOfEntries++;
                     }
                 }
-            }
+                if (numOfEntries == 0) System.out.println("None");
 
+                break;
+            }
+            case T: {
+                for (Shape shape : shapeList) {
+                    if (shape instanceof Triangle) {
+                        System.out.println(shape);
+
+                        numOfEntries++;
+                    }
+                }
+                if (numOfEntries == 0) System.out.println("None");
+
+                break;
+            }
+            case C: {
+                for (Shape shape : shapeList) {
+                    if (shape instanceof Circle) {
+                        System.out.println(shape);
+
+                        numOfEntries++;
+                    }
+                }
+                if (numOfEntries == 0) System.out.println("None");
+
+                break;
+            }
+        }
+    }
+
+    private static void removeAll(List<Shape> shapeList) {
+        int size = shapeList.size();
+
+        System.out.println(size);
+
+        shapeList.clear();
+    }
+
+    private static void totalArea(List<Shape> shapeList) {
+        double totalArea = 0;
+
+        for (Shape shape : shapeList) {
+            totalArea += shape.getArea();
         }
 
+        System.out.println(totalArea);
     }
 }

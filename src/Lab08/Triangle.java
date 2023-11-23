@@ -4,10 +4,14 @@ public class Triangle extends Shape {
     private int width;
     private int height;
 
-    public Triangle(int width, int height) {
-        super((double)width * height * 1/3);
+    public Triangle(int width, int height) throws InvalidTriangleException {
+        super((double)width * height * 1/2);
         this.width = width;
         this.height = height;
+
+        if (width <= 0 || height <= 0) {
+            throw new InvalidTriangleException(width, height, this.getArea());
+        }
     }
 
     @Override

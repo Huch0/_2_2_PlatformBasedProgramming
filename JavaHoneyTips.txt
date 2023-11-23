@@ -183,5 +183,31 @@ public class MyClass {
 	- CLASS : retained in the compiled bytecode
 	- RUNTIME : retained in the bytecode and available at runtime 
 
+## Package Concept in Java
 
+A package in Java is a way to organize related classes and interfaces into a group, providing a hierarchical structure for managing code in Java applications.
+
+### Key Points:
+
+- **Package Structure:** Packages are directories containing related classes and sub-packages, following the reverse domain naming convention (e.g., `com.example.myapp`).
+
+- **Organizing Code:** Packages help organize and categorize code, improving maintainability and scalability of Java applications.
+
+- **Visibility and Access Control:** Access control includes package-level visibility; classes in the same package can access package-private members of other classes in the same package.
+
+- **Import Statements:** The `import` statement allows you to use classes from other packages, simplifying code and improving readability.
+
+- **Java Standard Library Packages:** Java provides a standard library organized into packages, including common ones like `java.lang`, `java.util`, and `java.io`.
+
+- **Creating Custom Packages:** You can create custom packages by organizing class files into directories that match the package name.
+
+- **Package Declaration:** Every Java source file should have a `package` declaration to indicate its package affiliation.
+
+- **Accessing Classes in Other Packages:** Access classes from other packages by using fully qualified class names or importing classes with `import` statements.
+
+- **JAR Files:** Packages are used to organize and bundle classes in JAR files, a common distribution method for Java libraries and applications.
+
+- **Package Naming Conventions:** Following naming conventions for packages, classes, and methods is essential for readability and maintainability.
+
+Packages are a fundamental concept in Java, enabling code organization, reusability, and modular development in Java applications.
 
