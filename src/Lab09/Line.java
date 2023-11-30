@@ -6,18 +6,22 @@ public class Line extends Figure {
     Line(int x1, int y1, int x2, int y2) {
         this.point1 = new Point(x1, y1);
         this.point2 = new Point(x2, y2);
-
-        super.setSize(Point.pointsDistance(this.point1, this.point2));
+        this.size = Point.pointsDistance(this.point1, this.point2);
     }
 
     @Override
     public int getSize() {
-        return super.getSize();
+        return this.size;
     }
 
     @Override
     public int compareTo(MyComparable other) {
-        return super.compareTo(other);
+        if (this.getSize() == other.getSize())
+            return 0;
+        else if (this.getSize() > other.getSize())
+            return 1;
+        else
+            return -1;
     }
 
     @Override

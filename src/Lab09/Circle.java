@@ -4,20 +4,29 @@ public class Circle extends Figure {
     private Point center;
     private int radius;
 
-    Circle(int x, int y, int radius) {
+    Circle(int x, int y, int radius) throws InvalidCircleException {
         this.center = new Point(x, y);
         this.radius = radius;
-        super.setSize((int) (Math.PI * Math.pow(radius, 2)));
+        this.size = (int) (Math.PI * Math.pow(radius, 2));
+
+        if (radius <= 0) {
+            throw new InvalidCircleException(radius);
+        }
     }
 
     @Override
     public int getSize() {
-        return super.getSize();
+        return this.size;
     }
 
     @Override
     public int compareTo(MyComparable other) {
-        return super.compareTo(other);
+        if (this.getSize() == other.getSize())
+            return 0;
+        else if (this.getSize() > other.getSize())
+            return 1;
+        else
+            return -1;
     }
 
     @Override

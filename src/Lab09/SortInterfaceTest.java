@@ -1,7 +1,6 @@
 package Lab09;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -74,20 +73,62 @@ public class SortInterfaceTest {
     }
 
     private static Line createLine(Scanner scanner) {
-        int x1 = scanner.nextInt();
-        int y1 = scanner.nextInt();
-        int x2 = scanner.nextInt();
-        int y2 = scanner.nextInt();
+        // Consume the newline character left in the buffer
+        scanner.nextLine();
+        Line newLine = null;
 
-        return new Line(x1, y1, x2, y2);
+        while (true) {
+            try {
+                String[] nextLine = scanner.nextLine().split(" ");
+                int x1 = Integer.parseInt(nextLine[0]);
+                int y1 = Integer.parseInt(nextLine[1]);
+                int x2 = Integer.parseInt(nextLine[2]);
+                int y2 = Integer.parseInt(nextLine[3]);
+
+                newLine = new Line(x1, y1, x2, y2);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println(e);
+                continue;
+            } catch (NumberFormatException e) {
+                System.err.println(new InvalidPointException());
+                continue;
+            }
+        }
+
+        return newLine;
     }
 
     private static Circle createCircle(Scanner scanner) {
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
-        int radius = scanner.nextInt();
+        // Consume the newline character left in the buffer
+        scanner.nextLine();
+        Circle newCircle = null;
 
-        return new Circle(x, y, radius);
+        while (true) {
+            try {
+                String[] nextLine = scanner.nextLine().split(" ");
+                int x = Integer.parseInt(nextLine[0]);
+                int y = Integer.parseInt(nextLine[1]);
+                int radius = Integer.parseInt(nextLine[2]);
+
+                newCircle = new Circle(x, y, radius);
+
+                if (radius <= 0) {
+                    throw new InvalidCircleException(radius);
+                }
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println(e);
+                continue;
+            } catch (NumberFormatException e) {
+                System.err.println(new InvalidPointException());
+                continue;
+            } catch (InvalidCircleException e) {
+                System.err.println(e);
+                continue;
+            }
+        }
+        return newCircle;
     }
 
     private static void sortList(List<MyComparable> comparableList, SortKind sortKind) {
