@@ -211,3 +211,48 @@ A package in Java is a way to organize related classes and interfaces into a gro
 
 Packages are a fundamental concept in Java, enabling code organization, reusability, and modular development in Java applications.
 
+14. Generic Programming
+14-1. Generic Class
+14-2. Generic Method
+
+15. Inner Class
+15-1. Ordinary Inner Class
+15-2. Local (Inner) Class
+15-3. Anonymous (Inner) Class
+
+16. Collections
+
+17. Lamda Expression
+
+
+18. Stream
+
+```
+roaster.stream()	// build Stream<Person> from List<Person>
+	.forEach(e -> System.out.println(e.getName()); // internal iteration
+```
+```
+List<String> names = menu.stream()
+	.map((Dish dish) -> dish.getName()) // or .map(Dish::getName)
+	.collect(Collectors.toList());
+```
+
+- intermediate operation / terminal operation
+- Source State / Pipeline State
+- generate()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
