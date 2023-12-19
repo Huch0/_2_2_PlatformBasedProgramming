@@ -131,18 +131,18 @@ public class SortInterfaceTest {
         return newCircle;
     }
 
-    private static void sortList(List<MyComparable> comparableList, SortKind sortKind) {
-        int n = comparableList.size();
+        private static void sortList(List<MyComparable> comparableList, SortKind sortKind) {
+            comparableList.sort((obj1, obj2) ->
+                    sortKind == SortKind.ASCENDING ? obj1.compareTo(obj2) : obj2.compareTo(obj1)
+                    // If a < b, return -1
+                    // If a == b, return 0
+                    // If a > b, return 1
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (compare(comparableList.get(j), comparableList.get(j + 1), sortKind) > 0) {
-                    // Swap elements if they are in the wrong order
-                    swap(comparableList, j, j + 1);
-                }
-            }
+                    // Ascending order : obj1.compareTo(obj2)
+                    // Descending order : obj2.compareTo(obj1)
+            );
         }
-    }
+
 
     private static void swap(List<MyComparable> list, int i, int j) {
         MyComparable temp = list.get(i);

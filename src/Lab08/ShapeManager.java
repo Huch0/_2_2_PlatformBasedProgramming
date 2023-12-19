@@ -153,43 +153,28 @@ public class ShapeManager {
         ShapeCode shapeToPrint = getShapeCode();
         int numOfEntries = 0;
 
-        switch (shapeToPrint) {
-            case R: {
-                for (Shape shape : shapeList) {
-                    if (shape instanceof Rectangle) {
-                        System.out.println(shape);
-
-                        numOfEntries++;
-                    }
-                }
-                if (numOfEntries == 0) System.out.println("None");
-
-                break;
+        for (Shape shape : shapeList) {
+            if (shapeMatchesType(shape, shapeToPrint)) {
+                System.out.println(shape);
+                numOfEntries++;
             }
-            case T: {
-                for (Shape shape : shapeList) {
-                    if (shape instanceof Triangle) {
-                        System.out.println(shape);
+        }
 
-                        numOfEntries++;
-                    }
-                }
-                if (numOfEntries == 0) System.out.println("None");
+        if (numOfEntries == 0) {
+            System.out.println("None");
+        }
+    }
 
-                break;
-            }
-            case C: {
-                for (Shape shape : shapeList) {
-                    if (shape instanceof Circle) {
-                        System.out.println(shape);
-
-                        numOfEntries++;
-                    }
-                }
-                if (numOfEntries == 0) System.out.println("None");
-
-                break;
-            }
+    private static boolean shapeMatchesType(Shape shape, ShapeCode shapeCode) {
+        switch (shapeCode) {
+            case R:
+                return shape instanceof Rectangle;
+            case T:
+                return shape instanceof Triangle;
+            case C:
+                return shape instanceof Circle;
+            default:
+                return false;
         }
     }
 
